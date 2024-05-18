@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 
-const CitySearch = ({ allLocations, setCurrentCity }) => {
+const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
   const [showSuggestion, setShowSuggestion] = useState(false);
   const [query, setQuery] = useState("");
-  const [suggestions, setSuggaestions] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
 
   const handleInputChange = (event) => {
     const value = event.target.value;
@@ -13,19 +13,29 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
         })
       : [];
     setQuery(value);
-    setSuggaestions(filteredLocations);
-    // setShowSuggestion(false);
+    setSuggestions(filteredLocations);
+
+    let infoText;
+    if (filteredLocations.length === 0) {
+      infoText =
+        "We can not find the city you are looking for. Please try another city";
+    } else {
+      infoText = "";
+    }
+    setInfoAlert(infoText);
   };
-  const handleClick = (event) => {
-    const value = event.target.textContent;
-    setQuery(value);
+
+  const handleClick = (suggestion) => {
+    setQuery(suggestion);
     setShowSuggestion(false);
-    setCurrentCity(value);
+    setCurrentCity(suggestion);
+    setInfoAlert("");
   };
 
   useEffect(() => {
-    setSuggaestions(allLocations);
-  }, [`${allLocations}`]);
+    setSuggestions(allLocations);
+  }, [allLocations]);
+
   return (
     <div id="city-search">
       <input
@@ -40,12 +50,15 @@ const CitySearch = ({ allLocations, setCurrentCity }) => {
         <ul className="suggestion">
           {suggestions.map((suggestion) => {
             return (
-              <li onClick={handleClick} key={suggestion}>
+              <li onClick={() => handleClick(suggestion)} key={suggestion}>
                 {suggestion}
               </li>
             );
           })}
-          <li key="See all the cities">
+          <li
+            key="See all the cities"
+            onClick={() => handleClick("See all cities")}
+          >
             <b>See all cities</b>
           </li>
         </ul>
