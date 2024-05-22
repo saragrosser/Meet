@@ -1,21 +1,24 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
-const CitySearch = ({ allLocations }) => {
+const CitySearch = ({ allLocations, setCurrentCity }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
-    setSuggestions(allLocations || []);
+    setSuggestions(allLocations);
   }, [allLocations]);
 
   const handleInputChanged = (event) => {
     const value = event.target.value;
-    const filteredLocations = (allLocations || []).filter((location) => {
-      return (
-        location && location.toUpperCase().indexOf(value.toUpperCase()) > -1
-      );
-    });
+    const filteredLocations = allLocations
+      ? allLocations.filter((location) => {
+          return (
+            location && location.toUpperCase().indexOf(value.toUpperCase()) > -1
+          );
+        })
+      : [];
 
     setQuery(value);
     setSuggestions(filteredLocations);
@@ -25,6 +28,7 @@ const CitySearch = ({ allLocations }) => {
     const value = event.target.textContent;
     setQuery(value);
     setShowSuggestions(false);
+    setCurrentCity(value); // Update the global state with the selected city
   };
 
   return (
@@ -53,6 +57,15 @@ const CitySearch = ({ allLocations }) => {
       ) : null}
     </div>
   );
+};
+
+CitySearch.propTypes = {
+  allLocations: PropTypes.arrayOf(PropTypes.string),
+  setCurrentCity: PropTypes.func.isRequired,
+};
+
+CitySearch.defaultProps = {
+  allLocations: [],
 };
 
 export default CitySearch;

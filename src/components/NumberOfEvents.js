@@ -1,16 +1,28 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 
-const NumberOfEvents = ({ setNumberOfEvents }) => {
-  const [eventNumber, setEventNumber] = useState("32");
+const NumberOfEvents = ({ currentNOE, setCurrentNOE }) => {
+  const [number, setNumber] = useState(currentNOE);
 
-  const handleInputChange = (event) => {
-    const value = event.target.value;
-    setEventNumber(value);
+  useEffect(() => {
+    setNumber(currentNOE);
+  }, [currentNOE]);
+
+  const handleInputChanged = (event) => {
+    const value = parseInt(event.target.value, 10) || 0;
+    setNumber(value);
+    setCurrentNOE(value); // update the parent state
   };
 
   return (
-    <div id="numberOfEvents">
-      <input type="text" value={eventNumber} onChange={handleInputChange} />
+    <div id="number-of-events">
+      <label htmlFor="number-of-events-input">Number of Events: </label>
+      <input
+        type="text"
+        id="number-of-events-input"
+        className="number-of-events-input"
+        value={number}
+        onChange={handleInputChanged}
+      />
     </div>
   );
 };
