@@ -83,21 +83,6 @@ const removeQuery = () => {
   }
 };
 
-// getToken without try...catch
-
-// const getToken = async (code) => {
-//   const encodeCode = encodeURIComponent(code);
-//   const response = await fetch(
-//     'YOUR_GET_ACCESS_TOKEN_ENDPOINT' + '/' + encodeCode
-//   );
-//   const { access_token } = await response.json();
-//   access_token && localStorage.setItem("access_token", access_token);
-
-//   return access_token;
-// };
-
-// getToken with try...catch
-
 const getToken = async (code) => {
   const encodeCode = encodeURIComponent(code);
 
