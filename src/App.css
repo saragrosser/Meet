@@ -98,6 +98,7 @@ input[type="number"]:focus {
   background: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   transition: box-shadow 0.3s;
+  position: relative;
 }
 
 .event:hover {
@@ -105,9 +106,7 @@ input[type="number"]:focus {
 }
 
 .details-btn {
-  position: absolute;
-  right: 10px;
-  bottom: 10px;
+  display: inline-block;
   padding: 8px 12px;
   border-radius: 4px;
   outline: none;
@@ -116,6 +115,7 @@ input[type="number"]:focus {
   color: #fff;
   border: none;
   transition: background-color 0.3s;
+  margin-top: 10px;
 }
 
 .details-btn:hover {
