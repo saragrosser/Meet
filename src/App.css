@@ -121,3 +121,11 @@ input[type="number"]:focus {
 .details-btn:hover {
   background-color: #ff8f00;
 }
+
+.alerts-container {
+  position: fixed;
+  top: 0px;
+  left: 20px;
+  width: 250px;
+  z-index: 1000;
+}
