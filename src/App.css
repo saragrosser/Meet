@@ -29,6 +29,16 @@ p {
   margin: 5px 0;
 }
 
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 768px) {
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
+}
+
 input[type="text"],
 input[type="number"] {
   padding: 8px 12px;
@@ -121,7 +131,15 @@ input[type="number"]:focus {
 .details-btn:hover {
   background-color: #ff8f00;
 }
-
+@media (max-width: 768px) {
+  .details-btn {
+    position: static;
+    text-align: center;
+  }
+  .eventDetails {
+    padding: 10px 0;
+  }
+}
 .alerts-container {
   position: fixed;
   top: 0px;

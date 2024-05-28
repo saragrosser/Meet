@@ -97,10 +97,22 @@ This app uses serverless functions for authorizing access to public calendar eve
     - **When** the user views the chart,
     - **Then** a chart displaying the number of upcoming events in each city is shown.
 
-## Getting Started
+### The use of Serverless Functions
 
-To get a local copy up and running, follow these simple steps:
+Serverless functions are utilized in the Meet app to handle backend operations without the need for maintaining server infrastructure. For example, when users request information about upcoming events or perform actions like filtering events by city, serverless functions respond to these requests by retrieving and processing data from the database. By leveraging serverless architecture, the app ensures scalability, cost-effectiveness, and efficient resource utilization, allowing seamless access to event information regardless of the user's location or network connectivity.
 
-1. Clone the repo: https://github.com/saragrosser/Meet
-2. Install NPM packages
-3. Run the application
+### Run this project locally
+
+- Clone this repository
+
+- Go to the project directory
+
+      cd project-folder
+
+- Install dependencies
+
+      npm install
+
+- Run on localhost:3000
+
+      npm run start
